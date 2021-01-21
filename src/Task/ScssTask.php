@@ -53,10 +53,10 @@ class ScssTask extends Task {
 		$scss = new Compiler();
 
 		if($input->getOption('compress')) {
-			$io->write('Setting <info>SCSS</info> compiler output to <comment>compressed</comment>', true, IOInterface::VERBOSE);
+			$io->write('Setting SCSS compiler output to <comment>compressed</comment>', true, IOInterface::VERBOSE);
 			$scss->setOutputStyle(OutputStyle::COMPRESSED);
 		} else {
-			$io->write('Setting <info>SCSS</info> compiler output to <comment>expanded</comment>', true, IOInterface::VERBOSE);
+			$io->write('Setting SCSS compiler output to <comment>expanded</comment>', true, IOInterface::VERBOSE);
 			$scss->setOutputStyle(OutputStyle::EXPANDED);
 		}
 
@@ -65,19 +65,19 @@ class ScssTask extends Task {
 		$srcPath = $input->getArgument('src');
 		$destPath = $input->getArgument('dest');
 
-		$io->write('Setting <info>SCSS</info> import path to <comment>' . $workingDirPath . '</comment>', true, IOInterface::VERBOSE);
+		$io->write('Setting SCSS import path to <info>' . $workingDirPath . '</info>', true, IOInterface::VERBOSE);
 		$scss->setImportPaths($workingDirPath);
 
-		$io->write('Compiling <comment>' . $srcPath . '</comment>', true, IOInterface::NORMAL);
+		$io->write('Compiling <info>' . $srcPath . '</info>', true, IOInterface::NORMAL);
 		$output = $scss->compile('@import "' . $srcPath . '"', $srcPath);
 
 		$destDirPath = dirname($destPath);
 		if(!is_dir($destDirPath)) {
-			$io->write('Creating directory <comment>' . $destDirPath . '</comment>', true, IOInterface::VERBOSE);
+			$io->write('Creating directory <info>' . $destDirPath . '</info>', true, IOInterface::VERBOSE);
 			mkdir($destDirPath, 0777, true);
 		}
 
-		$io->write('Writing compiled css to <comment>' . $destPath . '</comment>', true, IOInterface::NORMAL);
+		$io->write('Writing compiled CSS to <info>' . $destPath . '</info>', true, IOInterface::NORMAL);
 		file_put_contents($destPath, $output);
 	}
 }
